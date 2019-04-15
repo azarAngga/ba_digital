@@ -14,6 +14,11 @@
 
 
 <ion-content padding>
+
+	<!-- <button id="x" (click)="changeColor()">Click Me!</button> (input)="getItems($event)"-->
+<!-- <ion-input type="text"  [(ngModel)]="atr" placeholder="Tulis sesuatu" id="atribut" value="0"></ion-input> -->
+	<input type="text" #atri id="atribut" hidden>
+	<button id="k"  (click)="scanSeconStb()" hidden>test</button>
 	<div align="center">
 		<label><font color="red"></font></label>
 	</div>
@@ -61,35 +66,58 @@
 						<td>
 							SN MODEM
 								<button (click)="actionModem()" class="button">
-								  
 								  <ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
 								</button>
 							
 						</td>
-						<td><br/><br/>
-						<ion-list style="margin-left: 10px">
-						  <ion-item>
-						    <ion-input type="text" [(ngModel)]="sn_modem" placeholder="Tulis sesuatu"></ion-input>
-						  </ion-item>
-						  </ion-list>
+							<td><br/><br/>
+								<ion-list style="margin-left: 10px">
+								  <ion-item>
+								    <ion-input type="text" [(ngModel)]="sn_modem" placeholder="Tulis sesuatu"></ion-input>
+								  </ion-item>
+								  </ion-list>
+						</td>
+					</tr>
+
+					<!-- <button (click)="newElement()" class="button">Add</button> -->
+					
+					<tr>
+
+						<td colspan="2">
+							<br/>
+							<br/>
+							<hr/>
+							<!-- <button id="btn_1" class="button"></button> -->
+							<div>
+							MAC Address STB 
+							<img (click)="removeElememt()" style="margin-top: 10" src="minus.png" height="30"  /> 
+							<!-- <img onclick="removeElememt()" style="margin-top: 10" src="minus.png" height="30"  />  -->
+							<!-- <img src="add.png" height="30" onclick="addnew()" /></div> -->
+							<img src="add.png" height="30" (click)="newElement()" /></div>
+								<!-- <button (click)="actionMac()" class="button">
+								  
+								  <ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
+								</button> -->
+							
+						
+						<table>
+							<tr>
+								<td>
+									<!-- <ion-list style="margin-left: 10px">
+									  <ion-item>
+									    <ion-input type="text" [(ngModel)]="mac_address" placeholder="Tulis sesuatu"></ion-input>
+									  </ion-item>
+									  </ion-list> -->
+								</td>
+								<!-- <td width="10%"><img src="minus.png" height="30"  /></td>
+								<td width="10%"><img src="add.png" height="30" (click) ="newElement()" /> </td> -->
+							</tr>
+						</table>
 						</td>
 					</tr>
 					<tr>
-						<td>
-							MAC Address STB
-								<button (click)="actionMac()" class="button">
-								  
-								  <ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
-								</button>
-							
-						</td>
-						<td><br/><br/>
-						<ion-list style="margin-left: 10px">
-						  <ion-item>
-						    <ion-input type="text" [(ngModel)]="mac_address" placeholder="Tulis sesuatu"></ion-input>
-						  </ion-item>
-						  </ion-list>
-						</td>
+						<td colspan="2"><div id="parent"></div> <hr/><br/></td>
+
 					</tr>
 					<tr>
 						<td>
@@ -361,5 +389,7 @@
 			</td>
 		</tr>
 		</table>
+
+
 		
 </ion-content>

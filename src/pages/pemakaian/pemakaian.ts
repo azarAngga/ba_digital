@@ -4,7 +4,7 @@ import { MitraPage } from '../mitra/mitra';
 import { MapPage } from '../map/map';
 import * as $ from 'jquery';
 import { AlertController } from 'ionic-angular';	
-declare var $: $;
+// declare var $: $;
 import { Storage } from '@ionic/storage';
 import { Pemakaian2Page }from '../pemakaian2/pemakaian2';
 import { Http,Headers,RequestOptions } from '@angular/http';
@@ -113,7 +113,7 @@ export class PemakaianPage {
    private device: Device,
    private storage: Storage
    ){
-   	  this.no_wo = this.no_permintaan;
+   	  //this.no_wo = this.no_permintaan;
    	  this.tanggal_mulai 	 = new Date().toISOString();
 	  this.tanggal_selesai = new Date().toISOString();
       //var date1 = new Date();
@@ -237,6 +237,7 @@ export class PemakaianPage {
  		var id_barang = [];
  		var volume = [];
  		var satuan = [];
+ 		this.no_wo = this.no_permintaan;
 
  		if(this.no_kontak == undefined){
  			this.showAlert("No no kontak tidak boleh kosong");
@@ -329,7 +330,7 @@ export class PemakaianPage {
 			
 			console.log("no string "+volume_m);
 			console.log("with string "+JSON.stringify(volume_m));
-			let wo = 'wo_number='+this.no_wo+'no_material='+this.no_material+'&nik='+this.nik+'&id_barang='+id_barang_m+'&volume='+volume_m+'&flag=ionic&namafile='+this.nama_file+"&versi="+this.uri.versi+"&nik="+this.nik;
+			let wo = 'wo_number='+this.no_wo+'&no_material='+this.no_material+'&nik='+this.nik+'&id_barang='+id_barang_m+'&volume='+volume_m+'&flag=ionic&namafile='+this.nama_file+"&versi="+this.uri.versi+"&nik="+this.nik;
 			//this.showAlertNews(wo);
 			console.log("ini_parmeter :"+wo);
 			console.log("ini_url :"+this.uri_api_alista+'ios/put_data_pemakaian_halaman1.php',wo,requestOptions);

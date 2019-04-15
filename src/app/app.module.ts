@@ -38,7 +38,7 @@ import { MitraPage } from '../pages/mitra/mitra';
 import { SignaturePage } from '../pages/signature/signature';
 import { DenahPage } from '../pages/denah/denah';
 import { HTTP } from '@ionic-native/http';
-
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
@@ -101,6 +101,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   GoogleMaps,
   Camera,
   Geolocation,
+  AndroidPermissions,
   FileTransferObject,
   FileTransfer,
     FileChooser,

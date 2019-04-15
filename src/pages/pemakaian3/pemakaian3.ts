@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild,Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Pemakaian4Page} from'../pemakaian4/pemakaian4';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
+import * as $ from 'jquery';
+import { UriProvider  } from '../../providers/uri/uri';
+import { Http, Headers, RequestOptions } from '@angular/http';
+
+//declare var $: $;
+//import jQuery from "jquery";
 
 /**
  * Generated class for the Pemakaian3Page page.
@@ -17,6 +23,9 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'pemakaian3.html',
 })
 export class Pemakaian3Page {
+    @ViewChild('atri') atri;
+    @ViewChild('stb1') stb1;
+
  	sn_ont: any;
  	sn_modem: any;
  	modem: any;
@@ -35,11 +44,48 @@ export class Pemakaian3Page {
  	speed: any ='1';
 
  	other: any;
+  atribut: any;
  	other_view: any = 0;
+  //atribut: any = 1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private storage: Storage,private barcodeScanner: BarcodeScanner,public alertCtrl: AlertController) {
-    
+  constructor(public navCtrl: NavController,
+   public navParams: NavParams,
+   private storage: Storage,
+   public http: Http,
+   public uri: UriProvider,
+   private barcodeScanner: BarcodeScanner,
+   public alertCtrl: AlertController,
+   private renderer: Renderer2) {
+
+
   }
+
+  ngAfterViewInit() {
+    //declare var $: $;
+    //document.getElementById('atribut');
+   // $("#atribut").val("test")
+   //         //console.log();
+   // // alert(input);
+       
+  }
+
+
+// changeColor(){ $('#xn').text('white'); }
+
+ scanSeconStb(){
+  //declare var $: $;
+  //alert($("#atribut").val());
+    //alert("test");
+    this.barcodeScanner.scan().then((barcodeData) => {
+       // Success! Barcode data is here
+       var atribut = $("#atribut").val();
+      // this.renderer.setProperty(this.stb1.nativeElement, 'value', 'test');
+       $("#txt_"+atribut).val(barcodeData.text);
+       this.mac_address = barcodeData.text;
+      }, (err) => {
+        alert(err);
+      });
+ }
 
   actionScanOnt(){
     this.barcodeScanner.scan().then((barcodeData) => {
@@ -70,8 +116,11 @@ export class Pemakaian3Page {
 
 
   ionViewDidLoad() {
+    
     console.log('ionViewDidLoad Pemakaian3Page');
   }
+
+
 
   actionWifi(){
     this.barcodeScanner.scan().then((barcodeData) => {
@@ -91,28 +140,36 @@ export class Pemakaian3Page {
     });
   }
 
+  checkPaket(data_var){
+    var data = JSON.stringify(data_var);
+
+    console.log(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data);
+    this.http.get(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data)
+      .map(res => res.json())
+      .subscribe(data => {
+
+        if(data.status == "ok"){
+          this.storage.set('data3',data);
+          this.navCtrl.push(Pemakaian4Page);
+        }else{
+          alert(data.message);
+        }
+
+      });
+  }
+
 
   actionNext(){
 
-    // if(this.sn_ont == undefined){
-    //   this.showAlert("SN ONT tidak boleh kosong");
-    // }else if(this.sn_modem == undefined){
-    //   this.showAlert("Modem tidak boleh kosong");
-    // }else if(this.modem == undefined){
-    //   this.showAlert("Modem tidak boleh kosong");
-    // }else 
-
-    //if(this.mac_address == undefined){
-    //  this.showAlert("Mac Address STB tidak boleh kosong");
-    //}//else if(this.nama == undefined){
-      //this.showAlert("Nama Teknisi tidak boleh kosong");
-    //}//else if(this.notel_teknisi == undefined){
-     // this.showAlert("Notel Teknisi tidak boleh kosong");
-    //}else 
-
-    if(this.psb  == undefined && this.migrasi  == undefined){
-      this.showAlert("PSB atau Migrasi tidak boleh kosong");
-    }else{
+    var stb = [];
+    if(this.no_row > 0){
+      var no = 1;
+      
+      while(no <= this.no_row){
+          stb.push($('#txt_'+no).val());
+          no++;
+        }
+    }
         var data3 = {
             sn_ont:this.sn_ont,
             sn_modem:this.sn_modem,
@@ -128,10 +185,43 @@ export class Pemakaian3Page {
             psb:this.psb,
             migrasi:this.migrasi,
             speed:this.speed,
-            other_speed:this.speed_other
+            other_speed:this.speed_other,
+            stb:stb
           }
-            this.storage.set('data3',data3);
-            this.navCtrl.push(Pemakaian4Page);
+          this.checkPaket(data3);
+           
+  }
+
+  no_row: any = 0;
+  arr_material: any= [];
+
+  newElement(){
+    this.no_row = this.no_row+1;
+    var no = this.no_row;
+    var data = this.arr_material;
+    var no_ = 0;
+    var str_app = "";
+
+    if(no <= 3){
+      $('#parent').append('<div id="el'+no+'"><table><tr><td><button id="btn_'+no+'" class="button"><div><img src="scan_barcode.png"/></div></button></td><td> <input placeholder="tulis disini" id="txt_'+no+'" type="text"/></td></tr></table><br/></div>');
+      
+      $("#btn_"+no).click(function() {
+            $("#atribut").val(no);
+            $("#k").click();
+          });
+   }else{
+    alert("Maksimal STB hanya 3 saja");
+    this.no_row = 3;
+   }
+  }
+
+  removeElememt(){
+    var no = this.no_row;
+    //alert(x);
+    $('#el'+no).remove();
+    this.no_row = this.no_row-1;
+    if(this.no_row < 0){
+      this.no_row = 0;
     }
   }
 
@@ -146,6 +236,28 @@ export class Pemakaian3Page {
   		this.other_view = 0;
   	}
   }
+
+  // ngAfterViewInit(){
+  //   //this.newElement()
+  //   this.no_row = this.no_row+1;
+  //   var no = this.no_row;
+  //   var data = this.arr_material;
+  //   var no_ = 0;
+  //   var str_app = "";
+
+  //   if(no <= 3){
+  //     $('#parent').append('<div id="el'+no+'"><table><tr><td><button id="btn_'+no+'" class="button"><div><img src="scan_barcode.png"/></div></button></td><td> <input placeholder="tulis disini" id="txt_'+no+'" type="text"/></td></tr></table><br/></div>');
+      
+  //     $("#btn_"+no).click(function() {
+  //           $("#atribut").val(no);
+  //           $("#k").click();
+  //         });
+  //  }else{
+  //   alert("Maksimal STB hanya 3 saja");
+  //   this.no_row = 3;
+  //  }
+
+  // }
 
   showAlert(x){
     let alert = this.alertCtrl.create({

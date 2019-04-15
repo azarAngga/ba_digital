@@ -37,11 +37,22 @@ export class BaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private transfer: FileTransfer,
     private fileOpener: FileOpener,
     private http: HTTP,
+    //private androidPermissions: AndroidPermissions,
     public uri: UriProvider,
     private storage: Storage,
     public https: Http,
     public loadingCtrl: LoadingController,
     private file: File) {
+
+
+    // this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE).then(
+    //   result => console.log('Has permission?',result.hasPermission),
+    //   err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)
+    // );
+
+    // this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE, this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE]);
+
+
     this.uri_app_amalia = this.uri.uri_app_amalia;
     this.storage.get('nik').then((val) => {
       this.nik = val;  

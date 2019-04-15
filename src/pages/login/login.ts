@@ -12,6 +12,8 @@ import { UriProvider  } from '../../providers/uri/uri';
 import { Device } from '@ionic-native/device';
 import { PemakaianPage } from '../pemakaian/pemakaian';
 import { BaPage } from '../ba/ba';
+import { HTTP } from '@ionic-native/http';
+
 
 @Component({
   selector: 'page-login',
@@ -27,7 +29,8 @@ export class LoginPage {
   pages: Array<{title: string, component: any}>;
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
-  public http: Http,
+  public http: HTTP,
+  public http2: Http,
   public alertCtrl: AlertController,
   public loadingCtrl: LoadingController,
   public storage: Storage,
@@ -35,7 +38,7 @@ export class LoginPage {
   public uri: UriProvider,
   public events: Events) 
   {
-
+    //this.testHttp();
     this.uri_api_amalia = this.uri.uri_api_amalia;
     this.setData("nok");
     this.pages = [];
@@ -55,7 +58,7 @@ export class LoginPage {
         this.presentLoading();
         //console.log('http://10.40.108.153/api_test/amalia/login.php?username='+this.username+'&password='+this.password);
         //this.http.get('http://apps.telkomakses.co.id/hana/ios/get_data_hana_login_default.php?username='+this.username+'&password='+this.password).map(res => res.json()).subscribe(data => {
-        this.http.get(this.uri_api_amalia+'get_data_hana_login_default.php?username='+this.username+'&password='+this.password+"&versi="+this.uri.versi).map(res => res.json()).subscribe(data => {
+        this.http2.get(this.uri_api_amalia+'get_data_hana_login_default.php?username='+this.username+'&password='+this.password+"&versi="+this.uri.versi).map(res => res.json()).subscribe(data => {
         //this.http.get('http://10.40.108.153/api_test/amalia/login.php?username='+this.username+'&password='+this.password).map(res => res.json()).subscribe(data => {
          this.items = data;
          console.log(this.items);
@@ -96,6 +99,10 @@ export class LoginPage {
 
         });
     }else{
+          this.http2.get("https://api.telkomakses.co.id/API/amalia/get_data_hana_login_default.php?username=15892288&password=a").map(res => res.json()).subscribe(data => {
+        //this.http.get('http://10.40.108.153/api_test/amalia/login.php?username='+this.username+'&password='+this.password).map(res => res.json()).subscribe(data => {
+         alert(data);
+        });
          this.showAlert("username dan password tidak boleh kosong");
     }
 
@@ -143,5 +150,26 @@ export class LoginPage {
         { title: 'Logout', component: LoginPage }
     ];
   }
+
+  testHttp(){
+    this.http.get('http://api.telkomakses.co.id/API/amalia/test.php', {}, {})
+    .then(data => {
+
+      alert(data.data);  
+      console.log(data.status);
+      console.log(data.data); // data received by server
+      console.log(data.headers);
+
+    })
+    .catch(error => {
+
+      console.log(error.status);
+      console.log(error.error); // error message as string
+      console.log(error.headers);
+
+    });
+  }
+
+
 
 }
