@@ -165,27 +165,27 @@ export class Pemakaian4Page {
 
   actionPut(){ 
 
-     var data4 = {
-          email:"te",
-          nik:this.nik,
-          kendala:this.kendala,
-          alasan_decline:this.alasan_decline,
-          harga:this.harga,
-          tempat_ttd:this.tempat_ttd,
-          harga_view:this.harga_view,
-          menggunakan_isp_view:this.menggunakan_isp_view,
-          url_ttd_pelanggan:this.nama_signature+"_1_"+this.sum_pelanggan+".png",
-          url_ttd_mitra:this.nama_signature+"_2_"+this.sum_mitra+".png",
-          denah:this.nama_signature+"_denah_+"+this.sum_denah+".png",
-        }
+     // var data4 = {
+     //      email:"te",
+     //      nik:this.nik,
+     //      kendala:this.kendala,
+     //      alasan_decline:this.alasan_decline,
+     //      harga:this.harga,
+     //      tempat_ttd:this.tempat_ttd,
+     //      harga_view:this.harga_view,
+     //      menggunakan_isp_view:this.menggunakan_isp_view,
+     //      url_ttd_pelanggan:this.nama_signature+"_1_"+this.sum_pelanggan+".png",
+     //      url_ttd_mitra:this.nama_signature+"_2_"+this.sum_mitra+".png",
+     //      denah:this.nama_signature+"_denah_+"+this.sum_denah+".png",
+     //    }
     
-        var js = JSON.stringify(this.data);
-        var js2 = JSON.stringify(this.data2);
-        var js3 = JSON.stringify(this.data3);
-        var js4 = JSON.stringify(data4);
+     //    var js = JSON.stringify(this.data);
+     //    var js2 = JSON.stringify(this.data2);
+     //    var js3 = JSON.stringify(this.data3);
+     //    var js4 = JSON.stringify(data4);
         
-        var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian.php?halaman1="+js+"&halaman2="+js2+"&halaman3="+js3+"&halaman4="+js4+"&versi="+this.uri.versi;
-        console.log(ini);  
+     //    var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian2.php?halaman1="+js+"&halaman2="+js2+"&halaman3="+js3+"&halaman4="+js4+"&versi="+this.uri.versi;
+     //    console.log(ini);  
 
     if(this.tempat_ttd == undefined){
         this.showAlert("Kolom Kota tidak boleh kosong");
@@ -282,7 +282,7 @@ export class Pemakaian4Page {
             var js3 = JSON.stringify(this.data3);
             var js4 = JSON.stringify(data4);
             
-            var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian.php?halaman1="+
+            var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian2.php?halaman1="+
             js+"&halaman2="+
             js2+"&halaman3="+
             js3+"&halaman4="+

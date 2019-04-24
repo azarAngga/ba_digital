@@ -141,17 +141,20 @@ export class Pemakaian3Page {
   }
 
   checkPaket(data_var){
-    var data = JSON.stringify(data_var);
+    var data_3 = JSON.stringify(data_var);
 
-    console.log(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data);
-    this.http.get(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data)
+    console.log(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_3);
+    this.http.get(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_3)
       .map(res => res.json())
       .subscribe(data => {
 
         if(data.status == "ok"){
-          this.storage.set('data3',data);
+          this.storage.set('data3',data_var);
           this.navCtrl.push(Pemakaian4Page);
+          //alert(data.bundling);
         }else{
+          this.psb = "0";
+          this.migrasi = "0";
           alert(data.message);
         }
 

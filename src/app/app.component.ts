@@ -65,7 +65,7 @@ export class MyApp {
             ];
               console.log('tampil', val);
               this.rootPage = HomePage;
-              //this.rootPage = Pemakaian3Page;
+              //this.rootPage = Pemakaian4Page;
           }else{
               console.log('login', val);
               this.rootPage = LoginPage;

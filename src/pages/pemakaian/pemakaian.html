@@ -9,7 +9,7 @@
     <button ion-button menuToggle >
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Halaman-1</ion-title>
+    <ion-title>Halaman-1 [versi {{uri.versi}}]</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -57,7 +57,7 @@
 
   <ion-item hidden>
     <ion-label stacked><font color="black">No WO</font></ion-label>
-    <ion-input value="00" placeholder="Tulis sesuatu" [(ngModel)]="no_wo" style="color:grey"  ></ion-input>
+    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_wo" style="color:grey"  ></ion-input>
   </ion-item>
 
   <ion-item>
@@ -65,10 +65,13 @@
     <ion-input (click)="presentProfileModal('sto')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label stacked><font color="black">No Permintaan</font></ion-label>
-    SC - <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_permintaan"  type="number" style="color:grey"></ion-input>
+    <ion-label stacked><font color="black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Permintaan</font></ion-label>
+
+   <ion-item>
+    <ion-label fixed>SC -</ion-label>
+    <ion-input [(ngModel)]="no_permintaan" type="number"  value="" placeholder="Tulis sesuatu"></ion-input>
   </ion-item>
+
   <ion-item>
     <ion-label stacked><font color="black">No Kontak</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_kontak"  type="number" max="13" style="color:grey"></ion-input>
