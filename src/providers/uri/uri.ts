@@ -17,7 +17,7 @@ export class UriProvider {
   uri_app_amalia: any = 'http://180.250.124.181/API/amalia/';
   uri_api_wimata: any = 'http://180.250.124.181/API/wimata/';
   uri_api_amalia: any = 'http://180.250.124.181/API/amalia/';
-  //uri_api: any = 'http://180.250.124.181/API/';*/
+   //uri_api: any = 'http://180.250.124.181/API/';*/
   
   prod: any= 'https://api.telkomakses.co.id/';
   //prod: any= 'http://180.250.124.181/';

@@ -23,6 +23,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { MapPage } from '../pages/map/map';
 import { HomePage } from '../pages/home/home';
+import { FotoPage } from '../pages/foto/foto';
 import { PemakaianPage } from '../pages/pemakaian/pemakaian';
 import { Pemakaian2Page } from '../pages/pemakaian2/pemakaian2';
 import { Pemakaian3Page } from '../pages/pemakaian3/pemakaian3';
@@ -54,6 +55,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     PemakaianPage,
     Pemakaian2Page,
     Pemakaian3Page,
+    FotoPage,
     Pemakaian4Page,
     BaPage,
     ListPage,
@@ -72,6 +74,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    FotoPage,
     MapPage,
     MitraPage,
     SignaturePage,

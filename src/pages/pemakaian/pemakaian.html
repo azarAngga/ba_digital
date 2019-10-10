@@ -27,13 +27,13 @@
         <ion-list radio-group [(ngModel)]="perusahaan" (ionChange)="changePerusahan($event)">
         <table width="100%">
             <tr>
-              <td><div style="margin-left: 15px"><ion-label >Perusahaan</ion-label></div></td>
+              <td><div style="margin-left: 15px"><ion-label ><div style="margin-top: 0px;width: 130px"><ion-radio value="telkom akses" ></ion-radio>
+                         Telkom Akses</div></ion-label></div></td>
               <td>
                 <table>
                   <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div style="margin-top: -15px;width: 130px"><ion-radio value="telkom akses" ></ion-radio>
-                         Telkom Akses</div>
+                        
                     </td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div style="margin-top: -15px;margin-left: 10px"><ion-radio value="mitra" ></ion-radio>
@@ -60,6 +60,11 @@
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_wo" style="color:grey"  ></ion-input>
   </ion-item>
 
+   <ion-item hidden>
+    <ion-label stacked><font color="black">Witel</font></ion-label>
+    <ion-input (click)="presentProfileModal('witel')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="witel" style="color:grey"></ion-input>
+  </ion-item>
+
   <ion-item>
     <ion-label stacked><font color="black">STO</font></ion-label>
     <ion-input (click)="presentProfileModal('sto')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
@@ -72,12 +77,44 @@
     <ion-input [(ngModel)]="no_permintaan" type="number"  value="" placeholder="Tulis sesuatu"></ion-input>
   </ion-item>
 
+  <ion-card width="100%" hidden>
+        <ion-card-header>
+          <b>Informasi Bangunan</b>
+        </ion-card-header>
+      <ion-card-content>
+        <ion-list radio-group [(ngModel)]="perusahaan" (ionChange)="changePerusahan($event)">
+        <table width="100%">
+            <tr>
+              <td><div style="margin-left: 15px"><ion-label ><div style="margin-top: 0px;width: 130px"><ion-radio value="telkom akses" ></ion-radio> Rumah</div></ion-label></div></td>
+              <td>
+                <table>
+                  <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div style="margin-top: -15px;margin-left: 10px"><ion-radio value="mitra" ></ion-radio>
+                         Apartemen</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+        </table>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
   <ion-item>
-    <ion-label stacked><font color="black">No Kontak</font></ion-label>
+    <ion-label stacked><font color="black">No Kontak Pelanggan </font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_kontak"  type="number" max="13" style="color:grey"></ion-input>
   </ion-item>
+  <ion-item hidden>
+    <ion-label stacked><font color="black">No Kontak Pelanggan 2</font></ion-label>
+    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_kontak_2"  type="number" max="13" style="color:grey"></ion-input>
+  </ion-item>
   <ion-item>
-    <ion-label stacked><font color="black">No Telepon</font></ion-label>
+    <ion-label stacked><font color="black">No Telepon Layanan</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_telepon"  type="number" style="color:grey"></ion-input>
   </ion-item>
    <ion-item>
@@ -102,7 +139,7 @@
 
   <ion-item>
     <ion-label stacked><font color="black">Alamat Pelanggan</font></ion-label>
-    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="alamat_pelanggan" style="color:grey"></ion-input>
+    <ion-textarea rows="6" cols="20" placeholder="Tulis Disini : Nama Gang, RT/RW dan tanda / referensi alamat sekitar" [(ngModel)]="alamat_pelanggan" style="color:grey"></ion-textarea>
   </ion-item>
     
     

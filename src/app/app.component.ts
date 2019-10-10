@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
+import { FotoPage } from '../pages/foto/foto';
 import { LoginPage } from '../pages/login/login';
 //import { ChoserPage } from '../pages/choser/choser';
 import { ListWoPage } from '../pages/list-wo/list-wo';
@@ -68,8 +69,8 @@ export class MyApp {
               //this.rootPage = Pemakaian4Page;
           }else{
               console.log('login', val);
+              //this.rootPage = FotoPage;
               this.rootPage = LoginPage;
-              //this.rootPage = Pemakaian3Page;
 
           }
     });

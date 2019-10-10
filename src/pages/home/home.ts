@@ -31,7 +31,8 @@ declare var cordova: any;
 export class HomePage {
   number_index: any;
 	selectedValue: number;
-	nik: any;
+	nik: any ;
+  wo: any ;
   foto: any;
   versi: number;
   platform_device: any;
@@ -44,7 +45,7 @@ export class HomePage {
 	val_in: any;
 	public nol: number = 0;
 	modeKeys: any[];
-	wo: any;
+	
   loader: any;
   data_wo: Array<{id_barang: string,stok: string,satuan: string}>;
   count_wo: any;
@@ -84,21 +85,11 @@ export class HomePage {
     //this.platform_device = 'iOS';
     //this.showAlertNews(device.platform);
     this.storage.get('nik').then((val) => {
-      this.setData("oke");
+      //this.setData("oke");
       this.setNik(val);
-      var nik = val;
-      //nik = '865809';
-      //nik = '91160121';
-      //nik = '91150102';
-      //nik = '81131614';
-      //nik = '97150427';
-      //nik = '17870134';
-      //nik = '15891348';
-      //nik = '16940495';
-
-      //this.http.get('http://180.250.124.181/API/alista/ios/get_data_team_leader.php?nik='+nik)
-      //this.http.get('http://api.telkomakses.co.id/API/alista/ios/get_data_team_leader.php?nik='+nik)
-      this.http.get(this.uri_api_alista+'ios/get_data_team_leader.php?nik='+nik)
+      this.nik = val;
+      
+      this.http.get(this.uri_api_alista+'ios/get_data_team_leader.php?nik='+this.nik)
       .map(res => res.json())
       .subscribe(data => {
         try{
@@ -116,11 +107,9 @@ export class HomePage {
         
       });
 
-      this.nik = nik;
-      this.versi = 6;
       this.checkUpdate();
       this.loadNameJabatan();
-      this.onLoad(nik);
+      this.onLoad(this.nik);
     });
 	}
 
@@ -188,7 +177,7 @@ export class HomePage {
 
   	let wo = 'wo_number='+wo_number+'&nik='+this.nik+'&id_barang='+id_barang+'&volume='+volume+'&flag=ionic&namafile='+this.nama_file+"&versi="+this.uri.versi;
     //this.showAlertNews(wo);
-  	console.log("ini_parmeter "+this.uri_api_alista+'ios/put_data_pemakaian.php'+wo);
+  	console.log("ini_parmeter "+this.uri_api_alista+'ios/put_data_pemakaian_update_eksisting.php'+wo);
 
   	//execute url post
     this.http.post(this.uri_api_alista+'ios/put_data_pemakaian.php',wo,requestOptions)
@@ -292,6 +281,8 @@ export class HomePage {
 	  	//this.http.post('http://api.telkomakses.co.id/API/alista/get_data_list_material.php',wo,requestOptions)
 	  	.map(res => res.json())
 	  	.subscribe(data => {
+        console.log("masuk material")
+
 	  		this.data_wo = data;
 	  		for(var idx = 0;idx < data.length;idx++){
 	  			this.modeKeys[idx] = 0;

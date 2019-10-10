@@ -31,6 +31,7 @@ export class PemakaianPage {
 	end_date: any ;
 	no_wo: any ="00";
 	sto: any ;
+	witel: any ;
 	no_permintaan: any ;
 	no_telepon: any ;	
 	no_inet: any ;
@@ -47,6 +48,7 @@ export class PemakaianPage {
 
 	nik: any;
 	no_kontak: any;
+	no_kontak_2: any;
 	no_material: any = false;
 
 	hk: any ;
@@ -144,11 +146,13 @@ export class PemakaianPage {
 
    presentProfileModal(x) {
 
-   		let profileModal = this.modalCtrl.create(MitraPage, { sto:x  });
+   		let profileModal = this.modalCtrl.create(MitraPage, { sto:x,witel:this.witel });
    		profileModal.onDidDismiss(data => {
 		     console.log("inii"+data.data);
 		     if(data.jenis == 'mitra'){
 		     	this.nama_mitra = data.data;
+		     }else if(data.jenis == 'witel'){
+				this.witel = data.data;
 		     }else{
 		     	this.sto = data.data;
 		     }
@@ -354,9 +358,11 @@ export class PemakaianPage {
 						'nama_mitra':this.nama_mitra,
 						'no_wo':this.no_wo,
 						'no_kontak':this.no_kontak,
+						'no_kontak_2':this.no_kontak_2,
 						'meter_awal': this.meter_awal,
 						'meter_akhir': this.meter_akhir,
 						'sto':this.sto,
+						'witel':this.witel,
 						'no_material':this.no_material,
 						'lat_odp':this.lat_odp,
 						'lng_odp':this.lng_odp,

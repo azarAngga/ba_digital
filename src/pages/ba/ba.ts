@@ -57,11 +57,14 @@ export class BaPage {
     this.storage.get('nik').then((val) => {
       this.nik = val;  
       this.getlistBA(this.nik);
+
     });
 	}
 
   getlistBA(nik){
+
      var ini = this.uri.uri_api_alista+'amalia_app/get_data_list_wo.php?nik='+this.nik;
+     console.log(ini)
     // console.log(ini);
     // this.http.get(ini)
     //       .map(res => res.json())
@@ -79,7 +82,7 @@ export class BaPage {
       this.json_data_vendor2 = JSON.parse(data.data);
       this.initializeItems();
       var i = JSON.parse(data.data);
-      console.log(i[0]['no_wo']);
+      console.log(i[0].no_wo);
 
       console.log(data.status);
       //console.log(data.data); // data received by server

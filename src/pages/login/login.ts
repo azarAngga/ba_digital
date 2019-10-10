@@ -80,7 +80,7 @@ export class LoginPage {
             this.setFoto(this.items.result[0].foto);
             this.events.publish('menu:tampil', this.pages);
             this.loadMenu();
-            this.setData("oke");
+            //this.setData("oke");
             this.setNik(this.username); 
             //this.setNik('16940495');
 
