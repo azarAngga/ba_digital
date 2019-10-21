@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { ModalNikBawahanPage } from '../modal-nik-bawahan/modal-nik-bawahan'; 
 import { Storage } from '@ionic/storage';
@@ -34,6 +34,7 @@ export class CreateWoPage {
    public modalCtrl: ModalController,
    public storage: Storage,
    public http: Http,
+    public platform: Platform,
    public alertCtrl: AlertController,
    public loadingCtrl: LoadingController
    ){
@@ -42,15 +43,21 @@ export class CreateWoPage {
       this.date1_v = date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
 
       this.nik_bawahan = "-";
-      this.storage.get('nik')
-      .then(val=>{
-        this.nik = val;
-      });
+      this.platform.ready().then(() => {
+        this.storage.get('nik')
+        .then(val=>{
+          this.nik = val;
+        });
 
-      this.storage.get('witel')
-      .then(val =>{
-        this.witel = val;
-      });
+        this.storage.get('witel')
+        .then(val =>{
+          this.witel = val;
+        });
+
+      })
+      
+
+      
   }
 
   ionViewDidLoad() {

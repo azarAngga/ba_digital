@@ -172,7 +172,7 @@
 	  </ion-card-content>
 	</ion-card>
 
-	<table width="100%">
+	<table hidden width="100%">
 		<tr>
 			<td><div align="center">Gambar daerah denah pelanggan</div></td>
 		</tr>
@@ -199,7 +199,7 @@
 	<br/>
 	<br/>
 	
-	<button *ngIf="generate == 'on'" class="button" (click)="actionGenerate()" right>&nbsp;Generate OTP Code&nbsp;</button>
+	<button hidden *ngIf="generate == 'on'" class="button" (click)="actionGenerate()" right>&nbsp;Generate OTP Code&nbsp;</button>
 	<br/>
 	<br/>
 	<br/>
@@ -219,7 +219,7 @@
 				<div align="right" style="margin-right: -10px">
 				  <br/>
 				  <img *ngIf="loader_gif == 'on'" src="loader.gif" />
-				  <button *ngIf="loader_gif == 'off'"  class="button" (click)="actionPut()" right>Submit</button>
+				  <button *ngIf="loader_gif == 'off'"  class="button" (click)="actionPut()" right>Next</button>
 				</div>
 			</td>
 		</tr>

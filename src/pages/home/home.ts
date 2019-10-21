@@ -82,35 +82,36 @@ export class HomePage {
     this.uri_app_amalia = this.uri.uri_app_amalia;
     this.uri_api_wimata = this.uri.uri_api_wimata;
 
-    //this.platform_device = 'iOS';
-    //this.showAlertNews(device.platform);
-    this.storage.get('nik').then((val) => {
-      //this.setData("oke");
-      this.setNik(val);
-      this.nik = val;
-      
-      this.http.get(this.uri_api_alista+'ios/get_data_team_leader.php?nik='+this.nik)
-      .map(res => res.json())
-      .subscribe(data => {
-        try{
-          console.log("ini witel",data[0].witel);
-          this.setWitel(data[0].witel);
-          this.loadMenuWithWitel();
-          this.events.publish('menu:tampil', this.pages);
-        }catch(err){
-          console.log(err);
-           this.loadMenu();
-          this.events.publish('menu:tampil', this.pages);
-        }
-          
-      },error =>{
-        
-      });
+     this.platform.ready().then(() => {
 
-      this.checkUpdate();
-      this.loadNameJabatan();
-      this.onLoad(this.nik);
-    });
+          this.storage.get('nik').then((val) => {
+          this.setData("oke");
+          this.nik = val;
+          this.http.get(this.uri_api_alista+'ios/get_data_team_leader.php?nik='+this.nik)
+          .map(res => res.json())
+          .subscribe(data => {
+            try{
+              console.log("ini witel",data[0].witel);
+              this.setWitel(data[0].witel);
+              this.loadMenuWithWitel();
+              this.events.publish('menu:tampil', this.pages);
+            }catch(err){
+              console.log(err);
+               this.loadMenu();
+              this.events.publish('menu:tampil', this.pages);
+            }
+              
+          },error =>{
+            
+          });
+
+          this.checkUpdate();
+          this.loadNameJabatan();
+          this.onLoad(this.nik);
+        });
+      
+     })
+    
 	}
 
 
@@ -392,9 +393,12 @@ export class HomePage {
                 nama_ori[index_path-1].indexOf(".PDF") > 0
                 ){
                 this.nama_file = nama_ori[index_path-1];
+                //this.path = this.path.replace('file://', '');
+
               }else{
                 this.path = "-";
                 this.nama_file = "-";
+
                 this.showPromptApp("File yang di perbolehkan {.jpg, .jpeg, .png, .PNG, .JPG, .JPEG, .pdf, .PDF}");
               }
               

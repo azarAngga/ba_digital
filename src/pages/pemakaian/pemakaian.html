@@ -18,6 +18,7 @@
   <div *ngSwitchCase="'order'">
      <label ><font size="5" color="red">ORDER</font></label>
      <br/>
+     <br/>
     <div style="margin: -10px -20px 0px -20px">
       <ion-card width="100%">
         <ion-card-header>
@@ -60,10 +61,13 @@
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_wo" style="color:grey"  ></ion-input>
   </ion-item>
 
-   <ion-item hidden>
+  <br/>
+   <ion-item>
     <ion-label stacked><font color="black">Witel</font></ion-label>
     <ion-input (click)="presentProfileModal('witel')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="witel" style="color:grey"></ion-input>
   </ion-item>
+
+  <br/>
 
   <ion-item>
     <ion-label stacked><font color="black">STO</font></ion-label>
@@ -77,15 +81,16 @@
     <ion-input [(ngModel)]="no_permintaan" type="number"  value="" placeholder="Tulis sesuatu"></ion-input>
   </ion-item>
 
-  <ion-card width="100%" hidden>
+  <br/>
+  <ion-card width="100%">
         <ion-card-header>
           <b>Informasi Bangunan</b>
         </ion-card-header>
       <ion-card-content>
-        <ion-list radio-group [(ngModel)]="perusahaan" (ionChange)="changePerusahan($event)">
+        <ion-list radio-group [(ngModel)]="bangunan" >
         <table width="100%">
             <tr>
-              <td><div style="margin-left: 15px"><ion-label ><div style="margin-top: 0px;width: 130px"><ion-radio value="telkom akses" ></ion-radio> Rumah</div></ion-label></div></td>
+              <td><div style="margin-left: 15px"><ion-label ><div style="margin-top: 0px;width: 130px"><ion-radio value="1" ></ion-radio> Rumah</div></ion-label></div></td>
               <td>
                 <table>
                   <tr>
@@ -93,7 +98,7 @@
                         
                     </td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div style="margin-top: -15px;margin-left: 10px"><ion-radio value="mitra" ></ion-radio>
+                        <div style="margin-top: -15px;margin-left: 10px"><ion-radio value="2" ></ion-radio>
                          Apartemen</div>
                     </td>
                   </tr>
@@ -104,12 +109,13 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
+    <br/>
 
   <ion-item>
-    <ion-label stacked><font color="black">No Kontak Pelanggan </font></ion-label>
+    <ion-label stacked><font color="black">No Kontak Pelanggan 1</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_kontak"  type="number" max="13" style="color:grey"></ion-input>
   </ion-item>
-  <ion-item hidden>
+  <ion-item>
     <ion-label stacked><font color="black">No Kontak Pelanggan 2</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_kontak_2"  type="number" max="13" style="color:grey"></ion-input>
   </ion-item>
@@ -141,7 +147,11 @@
     <ion-label stacked><font color="black">Alamat Pelanggan</font></ion-label>
     <ion-textarea rows="6" cols="20" placeholder="Tulis Disini : Nama Gang, RT/RW dan tanda / referensi alamat sekitar" [(ngModel)]="alamat_pelanggan" style="color:grey"></ion-textarea>
   </ion-item>
-    
+
+  <ion-item>
+    <ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
+    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="nama_pelanggan" style="color:grey"></ion-input>
+  </ion-item>  
     
   </div>
 

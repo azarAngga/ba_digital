@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController,Platform } from 'ionic-angular';
 import { MitraPage } from '../mitra/mitra';
 import { MapPage } from '../map/map';
 import * as $ from 'jquery';
@@ -48,7 +48,6 @@ export class PemakaianPage {
 
 	nik: any;
 	no_kontak: any;
-	no_kontak_2: any;
 	no_material: any = false;
 
 	hk: any ;
@@ -94,6 +93,9 @@ export class PemakaianPage {
 	path: any;
 	nama_file: any;
 	platform_device: any;
+
+	bangunan: any;
+	no_kontak_2: any;
 	
 	uri_api_alista: any;
 	uri_app_amalia: any;
@@ -106,39 +108,34 @@ export class PemakaianPage {
   
 	
   constructor(public navCtrl: NavController,
-   public navParams: NavParams,
-   public uri: UriProvider,
-   public alertCtrl: AlertController,
-   public modalCtrl: ModalController,
-   public http: Http,
-	public loadingCtrl: LoadingController,
-   private device: Device,
-   private storage: Storage
+	   public navParams: NavParams,
+	   public uri: UriProvider,
+	   public platform: Platform,
+	   public alertCtrl: AlertController,
+	   public modalCtrl: ModalController,
+	   public http: Http,
+	   public loadingCtrl: LoadingController,
+	   private device: Device,
+	   private storage: Storage
    ){
-   	  //this.no_wo = this.no_permintaan;
+
+   	  this.storage.set('session',"oke");
    	  this.tanggal_mulai 	 = new Date().toISOString();
 	  this.tanggal_selesai = new Date().toISOString();
-      //var date1 = new Date();
       var date2 = new Date();
-
-      this.storage.get('data').then((val) => {
-	    console.log('con', val);
-	  });
-
-
-      //this.start_date = date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
       this.start_date = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
       this.end_date   = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
       
-	  this.storage.get('nik').then((val) => {
+
+      this.platform.ready().then(() => {
+	  	this.storage.get('nik').then((val) => {
 	  	this.nik = val;
-	  	this.actionGetMaterial();
-	  	console.log("ini niknya"+this.nik);
-	  	this.loadMaterial(this.nik);
-	  });
+	  	 //this.actionGetMaterial();
+	  	 console.log("ini niknya"+this.nik);
+	  	 this.loadMaterial(this.nik);
+	  	});
+	  })  
   }
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PemakaianPage');
@@ -358,11 +355,12 @@ export class PemakaianPage {
 						'nama_mitra':this.nama_mitra,
 						'no_wo':this.no_wo,
 						'no_kontak':this.no_kontak,
-						'no_kontak_2':this.no_kontak_2,
 						'meter_awal': this.meter_awal,
 						'meter_akhir': this.meter_akhir,
 						'sto':this.sto,
 						'witel':this.witel,
+						'bangunan':this.bangunan,
+						'no_kontak_2':this.no_kontak_2,
 						'no_material':this.no_material,
 						'lat_odp':this.lat_odp,
 						'lng_odp':this.lng_odp,

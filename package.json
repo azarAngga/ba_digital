@@ -32,7 +32,7 @@
     "@ionic-native/file-opener": "^4.20.0",
     "@ionic-native/file-path": "^4.20.0",
     "@ionic-native/file-transfer": "^4.20.0",
-    "@ionic-native/geolocation": "^5.3.0",
+    "@ionic-native/geolocation": "^4.20.0",
     "@ionic-native/google-maps": "^4.21.0",
     "@ionic-native/http": "^4.20.0",
     "@ionic-native/screen-orientation": "^4.20.0",

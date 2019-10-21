@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController,ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController,ViewController,Platform } from 'ionic-angular';
 import {SignaturePage} from '../signature/signature'
 import {DenahPage} from '../denah/denah'
 import { Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import 'rxjs/add/operator/map';
-//import { ListWoPage } from '../list-wo/list-wo';
 import { UriProvider  } from '../../providers/uri/uri';
 import { AlertController } from 'ionic-angular';
 import { PemakaianPage } from '../pemakaian/pemakaian';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LoadingController } from 'ionic-angular';
 import { map } from "rxjs/operators/map";
+import { FotoPage } from '../foto/foto';
 
 
 /**
@@ -57,58 +57,54 @@ export class Pemakaian4Page {
   tempat_ttd: any;
 
   constructor(public navCtrl: NavController,
-   public navParams: NavParams,
-   private storage: Storage,
+    public navParams: NavParams,
+    private storage: Storage,
     public TransferObject: FileTransferObject,
     private transfer: FileTransfer,
-   private screenOrientation: ScreenOrientation,
-   public http: Http,
-   public uri: UriProvider,
-   public loadingCtrl: LoadingController,
-   public alertCtrl: AlertController,
+    private screenOrientation: ScreenOrientation,
+    public http: Http,
+    public platform: Platform,
+    public uri: UriProvider,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
     public modalController:ModalController,
     public viewCtrl: ViewController) {
-    this.storage.get('nik').then((val) => {
-      this.nik = val;  
-	   var date = new Date();
 
+    this.platform.ready().then(() => {
 
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-    var millisecond = date.getMilliseconds();
+        this.storage.get('nik').then((val) => {
+        this.nik = val;  
+    	  var date = new Date();
 
-    this.tanggal_ttd = day+"-"+month+"-"+year;
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var millisecond = date.getMilliseconds();
 
-    this.nama_signature = year+""+month+""+day+""+hours+""+minutes+""+seconds+""+millisecond+""+this.nik;
-    console.log(this.nama_signature);
+        this.tanggal_ttd = day+"-"+month+"-"+year;
 
+        this.nama_signature = year+""+month+""+day+""+hours+""+minutes+""+seconds+""+millisecond+""+this.nik;
+        console.log(this.nama_signature);
+        this.uri_api_alista = this.uri.uri_api_alista;
+        this.uri_app_amalia = this.uri.uri_app_amalia;
+        this.uri_api_wimata = this.uri.uri_api_wimata;
+          this.storage.get('data').then((val) => {
+            this.data = val;
+          });
 
-    this.uri_api_alista = this.uri.uri_api_alista;
-    this.uri_app_amalia = this.uri.uri_app_amalia;
-    this.uri_api_wimata = this.uri.uri_api_wimata;
-        // this.signatureImage1 = navParams.get('signatureImage');;
-        // console.log(this.signatureImage1);
-      this.storage.get('data').then((val) => {
-        //console.log('con', val);
-        //alert(val);
-        this.data = val;
+          this.storage.get('data2').then((val) => {
+            this.data2 = val;
+          });
+
+          this.storage.get('data3').then((val) => {
+            console.log('con', val);
+            this.data3 = val;
+          });
+        });
       });
-
-      this.storage.get('data2').then((val) => {
-        //console.log('con', val);
-        //alert(val);
-        this.data2 = val;
-      });
-
-      this.storage.get('data3').then((val) => {
-        console.log('con', val);
-        this.data3 = val;
-      });
-    });
     }
 
   ionViewDidLoad() {
@@ -116,7 +112,6 @@ export class Pemakaian4Page {
   }
 
   openSignatureModel1(){
-     //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
        let modal1 = this.modalController.create(SignaturePage);
         this.sum_pelanggan++;
         modal1.onDidDismiss(data => {
@@ -125,68 +120,33 @@ export class Pemakaian4Page {
          this.signatureImage1 = data.signatureImage;
          console.log(data.signatureImage);
          this.sendPostRequest(this.signatureImage1,this.nama_signature+"_1_"+this.sum_pelanggan+".png");
-         //this.upload(this.nama_signature+"_1.png",this.signatureImage1);
-          //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
        });
       modal1.present();
-    
-   
   }
 
   openSignatureModel2(){
-     //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);\
-       let modal2 = this.modalController.create(SignaturePage);
-       this.sum_mitra++;
-       modal2.onDidDismiss(data =>{
-       	 this.loading();
-        this.signatureImage2 = data.signatureImage;
-        this.sendPostRequest(this.signatureImage2,this.nama_signature+"_2_"+this.sum_mitra+".png");
-        //this.upload(this.nama_signature+"_2.png",this.signatureImage2);
-        //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      let modal2 = this.modalController.create(SignaturePage);
+      this.sum_mitra++;
+      modal2.onDidDismiss(data =>{
+       	  this.loading();
+          this.signatureImage2 = data.signatureImage;
+          this.sendPostRequest(this.signatureImage2,this.nama_signature+"_2_"+this.sum_mitra+".png");
        });
       modal2.present();
   }
 
   openModalDenah(){
-     //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
        let modal3 = this.modalController.create(DenahPage);
        this.sum_denah++;
        modal3.onDidDismiss(data =>{
         this.loading();
-
         this.denah = data.signatureImage;
-        console.log(this.denah);
         this.sendPostRequest(this.denah,this.nama_signature+"_denah_"+this.sum_denah+".png");
-        //this.upload(this.nama_signature+"_denah.png",this.denah);
-        //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
        });
       modal3.present();
   }
 
   actionPut(){ 
-
-     // var data4 = {
-     //      email:"te",
-     //      nik:this.nik,
-     //      kendala:this.kendala,
-     //      alasan_decline:this.alasan_decline,
-     //      harga:this.harga,
-     //      tempat_ttd:this.tempat_ttd,
-     //      harga_view:this.harga_view,
-     //      menggunakan_isp_view:this.menggunakan_isp_view,
-     //      url_ttd_pelanggan:this.nama_signature+"_1_"+this.sum_pelanggan+".png",
-     //      url_ttd_mitra:this.nama_signature+"_2_"+this.sum_mitra+".png",
-     //      denah:this.nama_signature+"_denah_+"+this.sum_denah+".png",
-     //    }
-    
-     //    var js = JSON.stringify(this.data);
-     //    var js2 = JSON.stringify(this.data2);
-     //    var js3 = JSON.stringify(this.data3);
-     //    var js4 = JSON.stringify(data4);
-        
-     //    var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian2.php?halaman1="+js+"&halaman2="+js2+"&halaman3="+js3+"&halaman4="+js4+"&versi="+this.uri.versi;
-     //    console.log(ini);  
-
     if(this.tempat_ttd == undefined){
         this.showAlert("Kolom Kota tidak boleh kosong");
     }else if(this.signatureImage1 == undefined){
@@ -194,9 +154,21 @@ export class Pemakaian4Page {
     }else if(this.signatureImage2 == undefined){
         this.showAlert("Tanda tangan pelanggan tidak boleh kosong");
     }else{
-      //this.upload(this.nama_signature+"_1.png",this.signatureImage1);
-      //this.upload(this.nama_signature+"_2.png",this.signatureImage2);
-      this.showConfirm();
+      var data4 = {
+            nik:this.nik,
+            kendala:this.kendala,
+            alasan_decline:this.alasan_decline,
+            harga:this.harga,
+            tempat_ttd:this.tempat_ttd,
+            harga_view:this.harga_view,
+            menggunakan_isp_view:this.menggunakan_isp_view,
+            url_ttd_pelanggan:this.nama_signature+"_1_"+this.sum_pelanggan+".png",
+            url_ttd_mitra:this.nama_signature+"_2_"+this.sum_mitra+".png",
+            denah:this.nama_signature+"_denah_+"+this.sum_denah+".png",}
+
+            this.storage.set('data4',data4);
+            this.navCtrl.push(FotoPage);
+
     }
   }
 
@@ -214,7 +186,6 @@ export class Pemakaian4Page {
       console.log(url);
       const fileTransfer: FileTransferObject = this.transfer.create();
     
-     
       //Use the FileTransfer to upload the image
       fileTransfer.upload(path, url, options).then(data => {
       	this.loader.dismiss();
@@ -236,84 +207,60 @@ export class Pemakaian4Page {
     alert.present();
   }
 
-   showConfirm() {
+  //  showConfirm() {
 
-    let confirm = this.alertCtrl.create({
-      title: 'Sertakan email pelanggan dan OTP?',
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'masukan email pelanggan (opsional)'
-        },{
-          name: 'otp',
-          placeholder: 'masukan Kode OTP'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'OK',
-          handler: (data) => {
-          //confirm.dismiss();
-          this.loading();
-          this.loader_gif = 'on';
-          
-            var data4 = {
-            email:data.email,
-            otp:data.otp,
-            nik:this.nik,
-            kendala:this.kendala,
-            alasan_decline:this.alasan_decline,
-            harga:this.harga,
-            tempat_ttd:this.tempat_ttd,
-            harga_view:this.harga_view,
-            menggunakan_isp_view:this.menggunakan_isp_view,
-            url_ttd_pelanggan:this.nama_signature+"_1_"+this.sum_pelanggan+".png",
-            url_ttd_mitra:this.nama_signature+"_2_"+this.sum_mitra+".png",
-            denah:this.nama_signature+"_denah_+"+this.sum_denah+".png",}
-    
-            var js = JSON.stringify(this.data);
-            var js2 = JSON.stringify(this.data2);
-            var js3 = JSON.stringify(this.data3);
-            var js4 = JSON.stringify(data4);
+  //   let confirm = this.alertCtrl.create({
+  //     title: 'Sertakan email pelanggan ',
+  //     inputs: [
+  //       {
+  //         name: 'email',
+  //         placeholder: 'masukan email pelanggan (Wajib)'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         handler: () => {
+  //           console.log('Disagree clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'OK',
+  //         handler: (data) => {
+
+
             
-            var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian2.php?halaman1="+
-            js+"&halaman2="+
-            js2+"&halaman3="+
-            js3+"&halaman4="+
-            js4+"&versi="+
-            this.uri.versi;
-            console.log(ini);   
-            this.http.get(ini)
-              .map(res => res.json())
-              .subscribe(data => {
-                this.loader.dismiss();
-                this.loader_gif = 'off';
-                if(data.status == "ok"){
-                    this.showAlert(data.message);
-                    this.navCtrl.setRoot(PemakaianPage);
-                }else{
-                  this.loader_gif = 'off';
-                  this.showAlert(data.message);
-                }
-              },error =>{
-                   this.loader_gif = 'off';
-                   console.log('error put '+error);
-              });
+  //           var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian2.php?halaman1="+
+  //           js+"&halaman2="+
+  //           js2+"&halaman3="+
+  //           js3+"&halaman4="+
+  //           js4+"&versi="+
+  //           this.uri.versi;
+  //           console.log(ini);   
+  //           this.http.get(ini)
+  //             .map(res => res.json())
+  //             .subscribe(data => {
+  //               this.loader.dismiss();
+  //               this.loader_gif = 'off';
+  //               if(data.status == "ok"){
+  //                   this.showAlert(data.message);
+  //                   this.navCtrl.setRoot(PemakaianPage);
+  //               }else{
+  //                 this.loader_gif = 'off';
+  //                 this.showAlert(data.message);
+  //               }
+  //             },error =>{
+  //                  this.loader_gif = 'off';
+  //                  console.log('error put '+error);
+  //             });
 
-            console.log('Agree clicked');
-          }
-        }
-      ]
-    });
-    confirm.present();
-
-  }
+  //           console.log('Agree clicked');
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   confirm.present();
+  // }
 
   actionBack(){
     this.navCtrl.pop();
@@ -362,8 +309,6 @@ export class Pemakaian4Page {
      console.log(myData);
      this.http.post(link, myData)
      .subscribe(data => {
-     //this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
-      //console.log(data["_body"]);
       this.loader.dismiss();
      }, error => {
       alert(error);

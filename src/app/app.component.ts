@@ -35,7 +35,9 @@ export class MyApp {
   foto: any;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public storage: Storage,public events: Events) {
+  constructor(public platform: Platform,
+   public statusBar: StatusBar,
+   public splashScreen: SplashScreen,public storage: Storage,public events: Events) {
     this.initializeApp();
 
       this.events.subscribe('menu:tampilNama', (nama,jabatan,foto) => {
@@ -61,17 +63,18 @@ export class MyApp {
               { title: 'Update Material Alista', component: HomePage },
               { title: 'List Stok Barang', component: ListWoPage },
               { title: 'Create BA Digital', component: PemakaianPage },
+              { title: 'Update Foto', component: FotoPage },
               { title: 'List BA Digital', component: BaPage },
               { title: 'Logout', component: LoginPage },
             ];
               console.log('tampil', val);
-              this.rootPage = HomePage;
+              //this.rootPage = FotoPage;
+              this.rootPage = PemakaianPage;
               //this.rootPage = Pemakaian4Page;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;
               this.rootPage = LoginPage;
-
           }
     });
   }

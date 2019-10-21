@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams , Platform } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
@@ -13,6 +13,7 @@ import { Device } from '@ionic-native/device';
 import { PemakaianPage } from '../pemakaian/pemakaian';
 import { BaPage } from '../ba/ba';
 import { HTTP } from '@ionic-native/http';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class LoginPage {
   password: any;
   uri_api_amalia: any;
   items: any;
+  versi: any;
   rootPage: any = LoginPage;
   loader: any;
   pages: Array<{title: string, component: any}>;
@@ -35,18 +37,43 @@ export class LoginPage {
   public loadingCtrl: LoadingController,
   public storage: Storage,
   public device: Device,
+  public platform: Platform,
   public uri: UriProvider,
+  private androidPermissions: AndroidPermissions,
   public events: Events) 
   {
-    //this.testHttp();
     this.uri_api_amalia = this.uri.uri_api_amalia;
+    this.versi = this.uri.versi;
     this.setData("nok");
     this.pages = [];
-    if(parseInt(this.device.version) < 5){
-      alert("Maaf device anda tidak kompatibel");
-    }
     this.events.publish('menu:tampil', this.pages);
-     this.events.publish('menu:tampilNama',"","","hana_splashx3.png");
+    this.events.publish('menu:tampilNama',"","","hana_splashx3.png");
+      this.platform.ready().then(() => {
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
+          result =>{
+              this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+          },
+          err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
+        );
+
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE).then(
+          result =>{
+              this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+              this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+                  },
+          err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE)
+        );
+
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION).then(
+          result =>{
+              this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+                  },
+          err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION)
+        );
+
+        
+
+      })
   }
 
   ionViewDidLoad(){
@@ -84,7 +111,7 @@ export class LoginPage {
             this.setNik(this.username); 
             //this.setNik('16940495');
 
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(PemakaianPage);
             this.loader.dismiss();
          }else{
           //cheat
@@ -99,10 +126,10 @@ export class LoginPage {
 
         });
     }else{
-          this.http2.get("https://api.telkomakses.co.id/API/amalia/get_data_hana_login_default.php?username=15892288&password=a").map(res => res.json()).subscribe(data => {
-        //this.http.get('http://10.40.108.153/api_test/amalia/login.php?username='+this.username+'&password='+this.password).map(res => res.json()).subscribe(data => {
-         alert(data);
-        });
+        //   this.http2.get("https://api.telkomakses.co.id/API/amalia/get_data_hana_login_default.php?username=15892288&password=a").map(res => res.json()).subscribe(data => {
+        //   //this.http.get('http://10.40.108.153/api_test/amalia/login.php?username='+this.username+'&password='+this.password).map(res => res.json()).subscribe(data => {
+        //  alert(data);
+        // });
          this.showAlert("username dan password tidak boleh kosong");
     }
 

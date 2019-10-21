@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
@@ -34,47 +34,31 @@ export class BaPage {
 
   list: any;
   uri_app_amalia: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private transfer: FileTransfer,
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private transfer: FileTransfer,
     private fileOpener: FileOpener,
     private http: HTTP,
     //private androidPermissions: AndroidPermissions,
     public uri: UriProvider,
     private storage: Storage,
+    public platform: Platform,
     public https: Http,
     public loadingCtrl: LoadingController,
     private file: File) {
-
-
-    // this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE).then(
-    //   result => console.log('Has permission?',result.hasPermission),
-    //   err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)
-    // );
-
-    // this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE, this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE]);
-
-
     this.uri_app_amalia = this.uri.uri_app_amalia;
-    this.storage.get('nik').then((val) => {
-      this.nik = val;  
-      this.getlistBA(this.nik);
-
-    });
+        this.platform.ready().then(() => {
+            this.storage.get('nik').then((val) => {
+              this.nik = val;  
+              this.getlistBA(this.nik);
+            });   
+        })
 	}
 
   getlistBA(nik){
 
-     var ini = this.uri.uri_api_alista+'amalia_app/get_data_list_wo.php?nik='+this.nik;
-     console.log(ini)
-    // console.log(ini);
-    // this.http.get(ini)
-    //       .map(res => res.json())
-    //       .subscribe(data => {
-    //         this.list = data;
-    //         this.json_data_vendor2 = data;
-    //         this.initializeItems();
-    //         console.log(data);
-    // }); 
-
+    var ini = this.uri.uri_api_alista+'amalia_app/get_data_list_wo.php?nik='+this.nik;
+    console.log(ini)
     this.http.get(ini, {}, {})
     .then(data => {
 
@@ -83,14 +67,11 @@ export class BaPage {
       this.initializeItems();
       var i = JSON.parse(data.data);
       console.log(i[0].no_wo);
-
       console.log(data.status);
-      //console.log(data.data); // data received by server
       console.log(data.headers);
 
     })
     .catch(error => {
-
       console.log(error.status);
       console.log(error.error); // error message as string
       console.log(error.headers);
@@ -98,13 +79,11 @@ export class BaPage {
     });
   }
 
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad BaPage');
   }
 
   initializeItems() {
-    //this.items = this.json_data_vendor2;
     var arr = [];
     var ini = 0;
     while(ini < this.json_data_vendor2.length){
