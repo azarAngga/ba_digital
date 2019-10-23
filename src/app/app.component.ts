@@ -69,12 +69,12 @@ export class MyApp {
             ];
               console.log('tampil', val);
               //this.rootPage = FotoPage;
-              this.rootPage = PemakaianPage;
+              this.rootPage = Pemakaian4Page;
               //this.rootPage = Pemakaian4Page;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;
-              this.rootPage = LoginPage;
+              this.rootPage = Pemakaian4Page;
           }
     });
   }

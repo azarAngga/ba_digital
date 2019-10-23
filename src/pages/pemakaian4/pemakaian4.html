@@ -32,7 +32,37 @@
 	  </ion-card-content>
 	</ion-card>
 
-	<ion-card>
+	<br/>
+	
+	<ion-card >
+			<ion-card-header>
+			  <font color="red">Resume Kegiatan Installasi</font>
+			</ion-card-header>
+	  
+			<ion-card-content>
+				<ion-item>
+					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
+					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
+					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
+					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
+					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
+				</ion-item>
+			</ion-card-content>
+		  </ion-card>
+
+	<ion-card hidden>
 
 	  <ion-card-header>
 	   <font color="red"> Kendala</font>
@@ -86,7 +116,8 @@
 	  </ion-card-content>
 
 	</ion-card>
-	<ion-card>
+
+	<ion-card hidden>
 
 	  <ion-card-header>
 	    <font color="red">Alasan Decline/ Pelanggan tidak memerlukan</font>
@@ -180,6 +211,7 @@
 			<td align="center"  width="50%"><div (click)="openModalDenah()"  style="border-color: grey; border-style: double;width: 250px;height: 200px" ><img *ngIf="denah" style="width: 100px;height: 100px" [src]="denah" ></div></td>
 		</tr>
 	</table>
+
 	<br/>
 	<div align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
 	<br/>

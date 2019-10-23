@@ -2,6 +2,7 @@ import { Component,ViewChild,Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Pemakaian4Page} from'../pemakaian4/pemakaian4';
+import { FotoPage} from'../foto/foto';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
 import * as $ from 'jquery';
@@ -150,7 +151,7 @@ export class Pemakaian3Page {
 
         if(data.status == "ok"){
           this.storage.set('data3',data_var);
-          this.navCtrl.push(Pemakaian4Page);
+          this.navCtrl.push(FotoPage);
           //alert(data.bundling);
         }else{
           this.psb = "0";

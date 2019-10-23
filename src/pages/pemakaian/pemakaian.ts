@@ -38,6 +38,10 @@ export class PemakaianPage {
 	nama_pelanggan: any ;
 	menu: any  = "order";
 	alamat_pelanggan: any;
+	rt: any;
+	rw: any;
+	kelurahan: any;
+	kecamatan: any;
 	//nik: any = '95130809';
 	//nik: any = '17930960';
 
@@ -258,7 +262,15 @@ export class PemakaianPage {
  			this.showAlert("Nama Pelanggan Tidak boleh kosong");
  		}else if(this.alamat_pelanggan == undefined){
  			this.showAlert("Nama alamat pelanggan Tidak boleh kosong");
- 		}else if(this.lat_odp == "-" && this.lat_pel == "-"){
+ 		}else if(this.rt == undefined){
+			this.showAlert("RT Tidak boleh kosong");
+		}else if(this.rw == undefined){
+			this.showAlert("RW Tidak boleh kosong");
+		}else if(this.kelurahan == undefined){
+			this.showAlert("Kelurahan Tidak boleh kosong");
+		}else if(this.kecamatan == undefined){
+			this.showAlert("kecamatan Tidak boleh kosong");
+		}else if(this.lat_odp == "-" && this.lat_pel == "-"){
  			this.showAlert("Koordinat pelanggan atau ODP tidak boleh kosong");
  		}else{
  			
@@ -373,6 +385,10 @@ export class PemakaianPage {
 						'end_date':this.end_date ,
 						'nama_pelanggan':this.nama_pelanggan ,
 						'alamat_pelanggan':this.alamat_pelanggan ,
+						'rt':this.rt ,
+						'rw':this.rw ,
+						'kelurahan':this.kelurahan ,
+						'kecamatan':this.kecamatan ,
 						'hk':this.hk ,
 						'dp':this.dp ,
 						'klem_primer':this.klem_primer ,

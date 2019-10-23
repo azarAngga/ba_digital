@@ -11,7 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UriProvider  } from '../../providers/uri/uri';
-import { PemakaianPage } from '../pemakaian/pemakaian';
+import { Pemakaian4Page } from '../pemakaian4/pemakaian4';
 
 
 /**
@@ -404,97 +404,45 @@ data4: any;
 		alert("Foto pelanggan tidak boleh kosong")
   	} else{
 
-  		let confirm = this.alertCtrl.create({
-      title: 'Sertakan email pelanggan ',
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'masukan email pelanggan (Wajib)'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: () => {
-          }
-        },
-        {
-          text: 'OK',
-          handler: (data) => {
-          //confirm.dismiss();
-          this.loading();
+      var data5 = {
 
-          	var data5 = {
+        name_1:this.name_1,
+        name_2:this.name_2,
+        name_3:this.name_3,
+        name_4:this.name_4,
+        name_5:this.name_5,
+        name_6:this.name_6,
+        name_7:this.name_7,
 
-	            name_1:this.name_1,
-	            name_2:this.name_2,
-	            name_3:this.name_3,
-	            name_4:this.name_4,
-	            name_5:this.name_5,
-	            name_6:this.name_6,
-	            name_7:this.name_7,
+        lat_1:this.lat_1,
+        lat_2:this.lat_2,
+        lat_3:this.lat_3,
+        lat_4:this.lat_4,
+        lat_5:this.lat_5,
+        lat_6:this.lat_6,
+        lat_7:this.lat_7,
 
-	            lat_1:this.lat_1,
-	            lat_2:this.lat_2,
-	            lat_3:this.lat_3,
-	            lat_4:this.lat_4,
-	            lat_5:this.lat_5,
-	            lat_6:this.lat_6,
-	            lat_7:this.lat_7,
+        long_1:this.long_1,
+        long_2:this.long_2,
+        long_3:this.long_3,
+        long_4:this.long_4,
+        long_5:this.long_5,
+        long_6:this.long_6,
+        long_7:this.long_7,
 
-	            long_1:this.long_1,
-	            long_2:this.long_2,
-	            long_3:this.long_3,
-	            long_4:this.long_4,
-	            long_5:this.long_5,
-	            long_6:this.long_6,
-	            long_7:this.long_7,
-
-	            date_1:this.date_1,
-	            date_2:this.date_2,
-	            date_3:this.date_3,
-	            date_4:this.date_4,
-	            date_5:this.date_5,
-	            date_6:this.date_6,
-	            date_7:this.date_7,
+        date_1:this.date_1,
+        date_2:this.date_2,
+        date_3:this.date_3,
+        date_4:this.date_4,
+        date_5:this.date_5,
+        date_6:this.date_6,
+        date_7:this.date_7,
 
 
-        	}
+    }
 
-            this.storage.set('data5',data5);
-    
-            var js = JSON.stringify(this.data);
-            var js2 = JSON.stringify(this.data2);
-            var js3 = JSON.stringify(this.data3);
-            var js4 = JSON.stringify(this.data4);
-            var js5 = JSON.stringify(data5);
-            
-            var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian2.php?halaman1="+js+"&halaman2="+
-            js2+"&halaman3="+js3
-            +"&halaman4="+js4
-            +"&halaman5="+js5
-            +"&versi="+
-            this.uri.versi; 
-            this.http.get(ini)
-              .map(res => res.json())
-              .subscribe(data => {
-                this.loader.dismiss();
-                if(data.status == "ok"){
-                    this.showAlert(data.message);
-                    this.navCtrl.setRoot(PemakaianPage);
-                }else{
-                  this.showAlert(data.message);
-                }
-              },error =>{
-                   console.log('error put '+error);
-              });
-
-            console.log('Agree clicked');
-          }
-        }
-      ]
-    });
-    confirm.present();
+      this.storage.set('data_foto',data5);
+      this.navCtrl.push(Pemakaian4Page);
   	}
   }
 
