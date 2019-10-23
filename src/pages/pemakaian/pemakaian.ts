@@ -258,6 +258,8 @@ export class PemakaianPage {
  			this.showAlert("Nama Pelanggan Tidak boleh kosong");
  		}else if(this.alamat_pelanggan == undefined){
  			this.showAlert("Nama alamat pelanggan Tidak boleh kosong");
+ 		}else if(this.dp == undefined){
+ 			this.showAlert("ODP Tidak boleh kosong");
  		}else if(this.lat_odp == "-" && this.lat_pel == "-"){
  			this.showAlert("Koordinat pelanggan atau ODP tidak boleh kosong");
  		}else{

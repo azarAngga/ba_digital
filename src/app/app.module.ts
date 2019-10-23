@@ -22,6 +22,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 
 
 import { MapPage } from '../pages/map/map';
+import { ResumePage } from '../pages/resume/resume';
 import { HomePage } from '../pages/home/home';
 import { FotoPage } from '../pages/foto/foto';
 import { PemakaianPage } from '../pages/pemakaian/pemakaian';
@@ -52,6 +53,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     DenahPage,
     HomePage,
     MapPage,
+    ResumePage,
     PemakaianPage,
     Pemakaian2Page,
     Pemakaian3Page,
@@ -76,6 +78,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     MyApp,
     FotoPage,
     MapPage,
+    ResumePage,
     MitraPage,
     SignaturePage,
     DenahPage,

@@ -29,7 +29,7 @@
 				<table class="only_border_top" width="100%">
 					<tr>
 						<th width="30%" rowspan="2" class="text_light"><div class="text_light">TEST LAYANAN</div></th>
-						<th width="30%" rowspan="2" class="text_light" ><div class="text_light">CONTOH</div></th>
+						<th width="30%" rowspan="2" class="text_light" ><div class="text_light"></div></th>
 						<th width="30%" class="only_border_bottom "><div class="text_light">KRITERIA</div></th>
 					</tr>
 					<tr >
@@ -43,8 +43,12 @@
 						</td>
 					</tr>
 					<tr class="only_border_top">
-						<td > &nbsp;Test Voice</td>
-						<td>&nbsp;Call</td>
+						<!-- <td > &nbsp;Test Voice</td>
+						<td>&nbsp;Call</td> -->
+						<td colspan="2">
+							<label>Test Voice</label>
+							<ion-input color="red" type="number" [(ngModel)]="test_voice_val" placeholder="Call Number" value=""></ion-input>
+						</td>
 						<td>
 							<ion-list radio-group [(ngModel)]="test_voice">
 							<table width="100%" >
@@ -65,8 +69,12 @@
 						</td>
 					</tr>
 					<tr class="only_border_top">
-						<td>&nbsp;Test Internet</td>
-						<td>&nbsp;Https://wwww.</td>
+						<!-- <td>&nbsp;Test Internet</td>
+						<td>&nbsp;Https://wwww.</td> -->
+						<td colspan="2">
+								<label>Test Internet</label>
+								<ion-input color="red" type="text" [(ngModel)]="test_internet_val" placeholder="Https://www" value=""></ion-input>
+						</td>
 						<td>
 							<ion-list radio-group [(ngModel)]="test_internet" >
 							<table  width="100%">
@@ -87,8 +95,12 @@
 						</td>
 					</tr>
 					<tr class="only_border_top only_border_bottom">
-						<td>&nbsp;Test UseTV</td>
-						<td>&nbsp;Chanel</td>
+						<!-- <td>&nbsp;Test UseTV</td>
+						<td>&nbsp;Chanel</td> -->
+						<td colspan="2">
+							<label>Test User TV</label>
+							<ion-input color="red" type="text" [(ngModel)]="test_use_tv_val" placeholder="Channel" value=""></ion-input>
+						</td>
 						<td><div>
 							<ion-list radio-group [(ngModel)]="test_use_tv" >
 							<table width="100%" >
@@ -149,7 +161,7 @@
 	  				<tr>
 	  					
 	  					<td>
-	  						&Hasil Ukur &nbsp;Redaman
+	  						Hasil Ukur & &nbsp;Redaman
 	  						<ion-item>
 							    <ion-input type="number" [(ngModel)]="hasil_ukur" placeholder="...db"></ion-input>
 							</ion-item>

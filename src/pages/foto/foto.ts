@@ -35,6 +35,10 @@ export class FotoPage {
  img5: any = "icon_camera.png";
  img6: any = "icon_camera.png";
  img7: any = "icon_camera.png";
+ img8: any = "icon_camera.png";
+ img9: any = "icon_camera.png";
+ img10: any = "icon_camera.png";
+
  nama_foto: any= "-";
  path: any;
  nik: any = "955139";
@@ -52,6 +56,9 @@ export class FotoPage {
  lat_5: any;
  lat_6: any;
  lat_7: any;
+ lat_8: any;
+ lat_9: any;
+ lat_10: any;
 
  long_1: any;
  long_2: any;
@@ -60,6 +67,9 @@ export class FotoPage {
  long_5: any;
  long_6: any;
  long_7: any;
+ long_8: any;
+ long_9: any;
+ long_10: any;
 
  date_1: any;
  date_2: any;
@@ -68,6 +78,9 @@ export class FotoPage {
  date_5: any;
  date_6: any;
  date_7: any;
+ date_8: any;
+ date_9: any;
+ date_10: any;
 
  name_1: any;
  name_2: any;
@@ -76,6 +89,9 @@ export class FotoPage {
  name_5: any;
  name_6: any;
  name_7: any;
+ name_8: any;
+ name_9: any;
+ name_10: any;
 
 data: any;
 data2: any;
@@ -89,8 +105,6 @@ data4: any;
  date_new: any;
 
   uri_api_alista: any;
-
-
 
   constructor(public navCtrl: NavController,
    private fileChooser: FileChooser,
@@ -347,11 +361,28 @@ data4: any;
 				this.lat_7 = this.latitude
 				this.long_7 = this.longitude
 				this.name_7 = nama
-		 	}
+		 	}else if(index_foto == "8"){
+        this.img8 = res
+     this.date_8 = this.getDate()
+     this.lat_8 = this.latitude
+     this.long_8 = this.longitude
+     this.name_8 = nama
+    }else if(index_foto == "9"){
+      this.img9 = res
+      this.date_9 = this.getDate()
+      this.lat_9 = this.latitude
+      this.long_9 = this.longitude
+      this.name_9 = nama
+      }else if(index_foto == "10"){
+        this.img10 = res
+        this.date_10 = this.getDate()
+        this.lat_10 = this.latitude
+        this.long_10 = this.longitude
+        this.name_10 = nama
+}
       }, err => {});
 
     }
-
 
     showConfirmFoto() {
     const confirm = this.alertCtrl.create({
@@ -389,20 +420,26 @@ data4: any;
   showConfirm() {
 
   	if(this.img1 == 'icon_camera.png'){
-  		alert("Foto ODP tidak boleh kosong")
+  		alert("Foto Depan ODP tidak boleh kosong")
   	}else if(this.img2 == 'icon_camera.png'){
-  		alert("Foto Drop Core tidak boleh kosong")
+  		alert("Foto Dalam ODP tidak boleh kosong")
   	}else if(this.img3 == 'icon_camera.png'){
-  		alert("Foto tes Redaman tidak boleh kosong")
+  		alert("Foto Label DC / Precon tidak boleh kosong")
   	}else if(this.img4 == 'icon_camera.png'){
-  		alert("Foto Jalur IRK tidak boleh kosong")
+  		alert("Foto Hasil Test Redaman di ODP tidak boleh kosong")
   	}else if(this.img5 == 'icon_camera.png'){
-		alert("Foto Rumah Pelanggan tidak boleh kosong")
+		alert("Foto DC / Precon ke rumah pelanggan tidak boleh kosong")
   	}else if(this.img6 == 'icon_camera.png'){
-  		alert("Foto NTE STB tidak boleh kosong")
+  		alert("Foto Rumah Pelanggan tidak boleh kosong")
   	}else if(this.img7 == 'icon_camera.png'){
-		alert("Foto pelanggan tidak boleh kosong")
-  	} else{
+		alert("Foto jalur IKR tidak boleh kosong")
+  	}else if(this.img8 == 'icon_camera.png'){
+      alert("Foto ONT tidak boleh kosong")
+    }else if(this.img9 == 'icon_camera.png'){
+      alert("Foto STB tidak boleh kosong")
+    }else if(this.img10 == 'icon_camera.png'){
+       alert("Foto dengan pelanggan tidak boleh kosong")
+    } else{
 
   		let confirm = this.alertCtrl.create({
       title: 'Sertakan email pelanggan ',
@@ -433,6 +470,9 @@ data4: any;
 	            name_5:this.name_5,
 	            name_6:this.name_6,
 	            name_7:this.name_7,
+	            name_8:this.name_8,
+	            name_9:this.name_9,
+	            name_10:this.name_10,
 
 	            lat_1:this.lat_1,
 	            lat_2:this.lat_2,
@@ -441,6 +481,9 @@ data4: any;
 	            lat_5:this.lat_5,
 	            lat_6:this.lat_6,
 	            lat_7:this.lat_7,
+	            lat_8:this.lat_8,
+	            lat_9:this.lat_9,
+	            lat_10:this.lat_10,
 
 	            long_1:this.long_1,
 	            long_2:this.long_2,
@@ -449,6 +492,9 @@ data4: any;
 	            long_5:this.long_5,
 	            long_6:this.long_6,
 	            long_7:this.long_7,
+	            long_8:this.long_8,
+	            long_9:this.long_9,
+	            long_10:this.long_10,
 
 	            date_1:this.date_1,
 	            date_2:this.date_2,
@@ -457,7 +503,9 @@ data4: any;
 	            date_5:this.date_5,
 	            date_6:this.date_6,
 	            date_7:this.date_7,
-
+	            date_8:this.date_8,
+	            date_9:this.date_9,
+	            date_10:this.date_10,
 
         	}
 

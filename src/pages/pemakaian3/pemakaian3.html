@@ -187,30 +187,11 @@
 					<tr>
 						<td colspan="2">&nbsp;</td>
 					</tr>
-					
-					<!-- <tr>
-						<td width="20%" >Nama Teknisi</td>
-						<td width="60%">
-							<ion-list>
-							  <ion-item>
-							    <ion-input [(ngModel)]="nama" type="text" placeholder="Tulis sesuatu"></ion-input>
-							  </ion-item>
-							  </ion-list>
-						</td>
-					</tr>
-					<tr>
-						<td width="20%" >Notel Teknisi </td>
-						<td width="60%"  >
-							<ion-list>
-							  <ion-item>
-							    <ion-input [(ngModel)]="notel_teknisi" maxlength="13" type="number" placeholder="Tulis sesuatu"></ion-input>
-							  </ion-item>
-							  </ion-list>
-						</td>
-					</tr> -->
+			
 				</table>
 			</div>
 
+	<!--PSB-->
 	<ion-card>
 	  <ion-card-header>
 	    PSB
@@ -223,33 +204,21 @@
 	    	<tr>
 	    		<td width="50%">
 		    		<ion-radio  checked="true" value="1"></ion-radio> 1P
-		    	</td>
+				</td>
+				<td>
+					<ion-radio value="2"></ion-radio> 2P
+				</td>
 		    	<td>
 		    		<ion-radio   value="3"></ion-radio> 3P
 		    	</td>
 	    	</tr>
-	    	<tr>
-	    		<td>
-		    		<ion-radio value="2"></ion-radio> 2P
-		    	</td>
-		    	<td>
-		    		<ion-radio  value="4"></ion-radio> STB Tambahan
-		    	</td>
-	    	</tr>
-	    	<tr>
-	    		<td>
-		    		<ion-radio value="5"></ion-radio> Change STB
-		    	</td>
-		    	<td>
-		    		
-		    	</td>
-	    	</tr>
-
 	    </table>
 		</ion-list>
 	  </ion-card-content>
 	</ion-card>
 
+	<br/>
+	<!--MIGRASI-->
 	<ion-card>
 	  <ion-card-header>
 	    Migrasi
@@ -312,8 +281,54 @@
 	    </table>
 		</ion-list>
 	  </ion-card-content>
-	</ion-card>
-	
+	</ion-card>	
+
+	<br/>
+	<!--TAMBAHAN-->
+	<ion-card>
+		<ion-card-header>
+		  Tambahan
+		  <hr/>
+		</ion-card-header>
+  
+		<ion-card-content>
+			<ion-list radio-group [(ngModel)]="tambahan">
+		  <table width="100%">
+			  <tr>
+				  <td width="50%">
+					<ion-radio value="1"></ion-radio> Change STB
+				  </td>
+				  <td>
+					<ion-radio  value="2"></ion-radio> STB Tambahan
+				  </td>
+				  <td>
+					  
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>
+					<ion-radio  value="3"></ion-radio> PLC
+				  </td>
+				  <td>
+					  <ion-radio  value="4"></ion-radio> Wifi Extender
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>
+					  <ion-radio value="5"></ion-radio> IndiBox
+				  </td>
+				  <td>
+					  
+				  </td>
+			  </tr>
+  
+		  </table>
+		  </ion-list>
+		</ion-card-content>
+	  </ion-card>
+
+	<br/>  
+	<!--TAMBAHAN-->
 	<ion-card>
 
 	  <ion-card-header>
@@ -329,22 +344,25 @@
 		    		<ion-radio checked="true" value="1"></ion-radio> 10MB
 		    	</td>
 		    	<td>
-		    		<ion-radio  value="4"></ion-radio> 40MB
+						<ion-radio  value="2"></ion-radio> 20MB
+		    		
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td>
-		    		<ion-radio  value="2"></ion-radio> 20MB
+						<ion-radio  value="3"></ion-radio> 30MB
 		    	</td>
 		    	<td>
-		    		<ion-radio  value="5"></ion-radio> 50MB
+						<ion-radio  value="4"></ion-radio> 40MB
+		    		
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td>
-		    		<ion-radio  value="3"></ion-radio> 30MB
+						<ion-radio  value="5"></ion-radio> 50MB
 		    	</td>
 		    	<td>
+					
 		    		<ion-radio  value="10"></ion-radio> 100MB
 		    	</td>
 	    	</tr>

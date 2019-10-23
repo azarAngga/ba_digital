@@ -15,10 +15,10 @@
 	<table width="100%">
 		<tr>
 			<td align="center">
-				ODP
+				 Depan ODP
 			</td>
 			<td align="center">
-				Dropcore
+				 Dalam ODP
 
 			</td>
 		</tr>
@@ -106,10 +106,10 @@
 
 		<tr>
 			<td align="center">
-				Tes Redaman
+				Label DC / Precon
 			</td>
 			<td align="center">
-				Jalur IKR
+				Hasil Test Redaman di ODP
 
 			</td>
 		</tr>
@@ -196,11 +196,10 @@
 
 		<tr>
 			<td align="center">
-				Rumah Pelanggan
+				DC / Precon Ke Rumah Pelanggan
 			</td>
 			<td align="center">
-				NTE & STB
-
+				Rumah Pelanggan
 			</td>
 		</tr>
 		<tr>
@@ -283,15 +282,18 @@
 		</tr>
 		<!-- 4 -->
 		<tr>
-			<td colspan="2" align="center">
-				Foto Dengan Pelanggan
+			<td  align="center">
+				Jalur IKR
+			</td>
+			<td  align="center">
+					Jalur ONT
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">&nbsp;</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">
+			<td  align="center">
 
 				<ion-card>
 				  <ion-card-content>
@@ -322,7 +324,115 @@
 				  </ion-card-content>
 				</ion-card>
 			</td>
+			<td  align="center">
+
+					<ion-card>
+					  <ion-card-content>
+						  &nbsp;
+						<img *ngIf="img8 == 'icon_camera.png'" (click)="foto('8')" [src]="img8" style="width: 100px;height: 100px" /> 
+						<img *ngIf="img8 != 'icon_camera.png' && pilihan == '2'" (click)="foto('8')" [src]="img8" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
+	
+						<img *ngIf="img8 != 'icon_camera.png' && pilihan == '1'" (click)="foto('8')" [src]="img8" style="width: 100px;height: 100px" /> 
+						&nbsp;
+	
+						<table *ngIf="isian == 'ok'">
+							<tr>
+								<td>Lat</td>
+								<td>:</td>
+								<td>{{lat_7}}</td>
+							</tr>
+							<tr>
+								<td>Long</td>
+								<td>:</td>
+								<td>{{long_7}}</td>
+							</tr>
+							<tr>
+								<td>Date</td>
+								<td>:</td>
+								<td>{{date_7}}</td>
+							</tr>
+						</table>
+					  </ion-card-content>
+					</ion-card>
+				</td>
 		</tr>
+
+		<!-- 5 -->
+		<tr>
+				<td  align="center">
+					STB
+				</td>
+				<td  align="center">
+					Foto Dengan Pelanggan
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td  align="center">
+	
+					<ion-card>
+					  <ion-card-content>
+						  &nbsp;
+						<img *ngIf="img9 == 'icon_camera.png'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px" /> 
+						<img *ngIf="img9 != 'icon_camera.png' && pilihan == '2'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
+	
+						<img *ngIf="img9 != 'icon_camera.png' && pilihan == '1'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px" /> 
+						&nbsp;
+	
+						<table *ngIf="isian == 'ok'">
+							<tr>
+								<td>Lat</td>
+								<td>:</td>
+								<td>{{lat_7}}</td>
+							</tr>
+							<tr>
+								<td>Long</td>
+								<td>:</td>
+								<td>{{long_7}}</td>
+							</tr>
+							<tr>
+								<td>Date</td>
+								<td>:</td>
+								<td>{{date_7}}</td>
+							</tr>
+						</table>
+					  </ion-card-content>
+					</ion-card>
+				</td>
+				<td  align="center">
+	
+						<ion-card>
+						  <ion-card-content>
+							  &nbsp;
+							<img *ngIf="img10 == 'icon_camera.png'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
+							<img *ngIf="img10 != 'icon_camera.png' && pilihan == '2'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
+		
+							<img *ngIf="img10 != 'icon_camera.png' && pilihan == '1'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
+							&nbsp;
+		
+							<table *ngIf="isian == 'ok'">
+								<tr>
+									<td>Lat</td>
+									<td>:</td>
+									<td>{{lat_7}}</td>
+								</tr>
+								<tr>
+									<td>Long</td>
+									<td>:</td>
+									<td>{{long_7}}</td>
+								</tr>
+								<tr>
+									<td>Date</td>
+									<td>:</td>
+									<td>{{date_7}}</td>
+								</tr>
+							</table>
+						  </ion-card-content>
+						</ion-card>
+					</td>
+			</tr>
 
 
 	</table>

@@ -27,6 +27,10 @@ export class Pemakaian2Page {
 	catatan_khusus: any ="1";
 	other: any = "";
 
+	test_voice_val: any = "";
+	test_internet_val: any = "";
+	test_use_tv_val: any = "";
+
 	other_view: any = 0;
 
 	constructor(public navCtrl: NavController,
@@ -58,6 +62,9 @@ export class Pemakaian2Page {
 				'test_download':this.test_download,
 				'hasil_ukur':this.hasil_ukur,
 				'catatan_khusus':this.catatan_khusus,
+				'test_voice_val':this.test_voice_val,
+				'test_internet_val':this.test_internet_val,
+				'test_use_tv_val':this.test_use_tv_val,
 				'other_catatan':this.other
 			}
 

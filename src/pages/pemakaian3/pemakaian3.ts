@@ -41,6 +41,7 @@ export class Pemakaian3Page {
  	notel_teknisi: any;
  	psb: any;
  	migrasi: any;
+ 	tambahan: any;
  	speed: any ='1';
 
  	other: any;
@@ -187,6 +188,7 @@ export class Pemakaian3Page {
             notel_teknisi:this.notel_teknisi,
             psb:this.psb,
             migrasi:this.migrasi,
+            tambahan: this.tambahan,
             speed:this.speed,
             other_speed:this.speed_other,
             stb:stb
