@@ -16,11 +16,13 @@ import { PemakaianPage } from '../pages/pemakaian/pemakaian';
 import { Pemakaian2Page } from '../pages/pemakaian2/pemakaian2';
 import { Pemakaian4Page } from '../pages/pemakaian4/pemakaian4';
 import { Pemakaian3Page } from '../pages/pemakaian3/pemakaian3';
+import { ResumePage } from '../pages/resume/resume';
 
 //import { MapPage } from '../pages/map/map';
 //import { MitraPage } from '../pages/mitra/mitra';
 //import { SignaturePage } from '../pages/signature/signature';
 import { BaPage } from '../pages/ba/ba';
+import { MaterialPage } from '../pages/material/material';
 
 @Component({
   templateUrl: 'app.html'
@@ -43,7 +45,7 @@ export class MyApp {
       this.events.subscribe('menu:tampilNama', (nama,jabatan,foto) => {
         // user and time are the same arguments passed in `events.publish(user, time)`
         this.nama    = nama;
-        this.jabatan = jabatan; 
+        this.jabatan = jabatan;  
         this.foto    = foto; 
         
         if(this.foto == null){
@@ -69,12 +71,13 @@ export class MyApp {
             ];
               console.log('tampil', val);
               //this.rootPage = FotoPage;
-              this.rootPage = Pemakaian4Page;
-              //this.rootPage = Pemakaian4Page;
+              //this.rootPage = MaterialPage;
+              this.rootPage = PemakaianPage;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;
-              this.rootPage = Pemakaian4Page;
+              // this.rootPage = LoginPage;
+              this.rootPage = LoginPage;
           }
     });
   }

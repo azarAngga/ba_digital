@@ -34,33 +34,7 @@
 
 	<br/>
 	
-	<ion-card >
-			<ion-card-header>
-			  <font color="red">Resume Kegiatan Installasi</font>
-			</ion-card-header>
-	  
-			<ion-card-content>
-				<ion-item>
-					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
-					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
-				</ion-item>
-
-				<ion-item>
-					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
-					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
-				</ion-item>
-
-				<ion-item>
-					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
-					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
-				</ion-item>
-
-				<ion-item>
-					<ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
-					<ion-input placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
-				</ion-item>
-			</ion-card-content>
-		  </ion-card>
+	
 
 	<ion-card hidden>
 
@@ -70,7 +44,7 @@
 
 	  <ion-card-content>
 	  	<ion-list radio-group [(ngModel)]="kendala">
-	    <table style="" width="100%">
+	    <table width="100%">
 	    	<tr>
 	    		<td width="50%">
 		    		<ion-radio  value="1"></ion-radio> Alamat Tidak Jelas
@@ -117,7 +91,7 @@
 
 	</ion-card>
 
-	<ion-card hidden>
+	<ion-card >
 
 	  <ion-card-header>
 	    <font color="red">Alasan Decline/ Pelanggan tidak memerlukan</font>
@@ -213,10 +187,10 @@
 	</table>
 
 	<br/>
-	<div align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
+	<div hidden align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
 	<br/>
 	
-	<table width="100%">
+	<table hidden width="100%">
 		<tr>
 			<td><div align="center">Pelanggan</div></td>
 			<td><div align="center">Mitra</div></td>

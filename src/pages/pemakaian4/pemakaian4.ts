@@ -155,15 +155,8 @@ export class Pemakaian4Page {
   }
 
   actionPut(){ 
-    if(this.tempat_ttd == undefined){
-        this.showAlert("Kolom Kota tidak boleh kosong");
-    }else if(this.signatureImage1 == undefined){
-        this.showAlert("Tanda tangan pelanggan tidak boleh kosong");
-    }else if(this.signatureImage2 == undefined){
-        this.showAlert("Tanda tangan pelanggan tidak boleh kosong");
-    }else{
+    
       var data4 = {
-            nik:this.nik,
             kendala:this.kendala,
             alasan_decline:this.alasan_decline,
             harga:this.harga,
@@ -174,60 +167,10 @@ export class Pemakaian4Page {
             url_ttd_mitra:this.nama_signature+"_2_"+this.sum_mitra+".png",
             denah:this.nama_signature+"_denah_+"+this.sum_denah+".png"}
 
-            this.storage.set('data4',data4);
-            let confirm = this.alertCtrl.create({
-              title: 'Sertakan email pelanggan ',
-              inputs: [
-                {
-                  name: 'email',
-                  placeholder: 'masukan email pelanggan (Wajib)'
-                }
-              ],
-              buttons: [
-                {
-                  text: 'Cancel',
-                  handler: () => {
-                  }
-                },
-                {
-                  text: 'OK',
-                  handler: (data) => {
-                  //confirm.dismiss();
-                  this.loading();
-    
-                    var js = JSON.stringify(this.data);
-                    var js2 = JSON.stringify(this.data2);
-                    var js3 = JSON.stringify(this.data3);
-                    var js4 = JSON.stringify(this.data4);
-                    var js_foto = JSON.stringify(this.data_foto);
-                    
-                    var ini = this.uri.uri_api_alista+"amalia_app/put_data_pemakaian2.php?halaman1="+js+"&halaman2="+
-                    js2+"&halaman3="+js3
-                    +"&halaman4="+js4
-                    +"&halaman_foto="+js_foto
-                    +"&versi="+
-                    this.uri.versi; 
-                    this.http.get(ini)
-                      .map(res => res.json())
-                      .subscribe(data => {
-                        this.loader.dismiss();
-                        if(data.status == "ok"){
-                            this.showAlert(data.message);
-                            this.navCtrl.setRoot(PemakaianPage);
-                        }else{
-                          this.showAlert(data.message);
-                        }
-                      },error =>{
-                          console.log('error put '+error);
-                      });
-                  }
-                }
-              ]
-            });
-          confirm.present();
-            //this.navCtrl.push(FotoPage);
+            this.storage.set('data5',data4);
 
-    }
+            this.navCtrl.setRoot(FotoPage);
+    
   }
 
   upload(nama,path){

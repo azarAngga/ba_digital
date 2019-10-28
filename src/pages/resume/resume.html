@@ -1,0 +1,157 @@
+<!--
+  Generated template for the ResumePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Halaman Akhir</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card width="100%">
+        <ion-card-header>
+          <b>Resume</b>
+        </ion-card-header>
+      <ion-card-content>
+
+          <table width=100%>
+            <tr>
+              <td>
+                Nama
+              </td>
+              <td>
+                :
+              </td>
+              <td>
+                  {{nama}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                No Telp.
+              </td>
+              <td>
+                :
+              </td>
+              <td>
+                  {{no_telp}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Alamat
+              </td>
+              <td>
+                :
+              </td>
+              <td>
+                  {{alamat}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Type Layanan
+              </td>
+              <td>
+                :
+              </td>
+              <td>
+                  {{type_layanan}}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <hr/>
+                Hasil Test Layanan
+                <hr/>
+              </td>
+              
+            </tr>
+            <tr>
+              <td>
+                Test Voice 
+              </td>
+              <td>
+                :
+              </td>
+              <td>
+                  <div *ngIf="test_voice == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_voice == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Test Internet
+              </td>
+              <td>
+                :
+              </td>
+              <td>
+                  <div *ngIf="test_internet == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_internet == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+                  
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Test Usee TV
+              </td>
+              <td>
+                :
+              </td>
+              <td>
+                  <div *ngIf="test_use_tv == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_use_tv == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+              </td>
+            </tr>
+          </table>
+            
+      </ion-card-content>
+    </ion-card>
+
+    <br/>
+    <br/>
+    <br/>
+    <div align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
+    <br/>
+    <br/>
+    <br/>
+    <table width="100%">
+      <tr>
+        <td><div align="center">Pelanggan</div></td>
+        <td><div align="center">Mitra</div></td>
+      </tr>
+      <tr>
+        <td align="center"  width="50%"><div (click)="openSignatureModel1()"  style="border-color: grey; border-style: dashed;width: 150px;height: 100px" ><img *ngIf="signatureImage1" style="width: 100px;height: 100px" [src]="signatureImage1" ></div></td>
+        <td align="center"  width="50%"><div (click)="openSignatureModel2()"  style="border-color: grey;border-style: dashed;width: 150px;height: 100px" ><img *ngIf="signatureImage2" style="width: 100px;height: 100px" [src]="signatureImage2" ></div></td>
+      </tr>
+    </table>
+
+    <br/>
+	<br/>
+	<br/>
+
+    <table width="100%">
+		<tr>
+			<td>
+				<div align="left" style="margin-left: -15px">
+				  <br/>
+				  <button class="button" (click)="actionBack()" right>&nbsp;< Back&nbsp;</button>
+				</div>
+			</td>
+			<td width="40%">
+				&nbsp;
+			</td>
+			<td>
+				<div align="right" style="margin-right: -10px">
+				  <br/>
+				  <img *ngIf="loader_gif == 'on'" src="loader.gif" />
+				  <button *ngIf="loader_gif == 'off'"  class="button" (click)="actionPut()" right>Next</button>
+				</div>
+			</td>
+		</tr>
+	</table>
+</ion-content>

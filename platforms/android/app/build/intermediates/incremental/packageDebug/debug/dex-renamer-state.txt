@@ -1,0 +1,4 @@
+#Mon Oct 28 10:27:36 WIB 2019
+base.0=/Users/mojave/Documents/project/ionic/ba_digital/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

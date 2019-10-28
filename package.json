@@ -14,7 +14,7 @@
     "@angular/animations": "5.2.11",
     "@angular/common": "5.2.11",
     "@angular/compiler": "5.2.11",
-    "@angular/compiler-cli": "5.2.11",
+    "@angular/compiler-cli": "^8.2.11",
     "@angular/core": "5.2.11",
     "@angular/forms": "5.2.11",
     "@angular/http": "5.2.11",
@@ -41,8 +41,9 @@
     "@ionic/storage": "2.2.0",
     "@types/jquery": "^3.3.29",
     "angular2-signaturepad": "^2.8.0",
-    "cordova-android": "7.1.4",
+    "cordova-android": "^7.1.4",
     "cordova-browser": "5.0.4",
+    "cordova-ios": "^4.4.0",
     "cordova-plugin-advanced-http": "2.0.6",
     "cordova-plugin-android-permissions": "1.0.0",
     "cordova-plugin-camera": "4.0.3",
@@ -65,7 +66,7 @@
     "es6-promise-plugin": "^4.2.2",
     "ionic-angular": "3.9.3",
     "ionicons": "3.0.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "phonegap-plugin-barcodescanner": "8.0.1",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
@@ -73,17 +74,21 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.2.1",
+    "@ionic/app-scripts": "^3.2.4",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
       "cordova-plugin-file-transfer": {},
-      "phonegap-plugin-barcodescanner": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-document-viewer": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-file-opener2": {},
+      "cordova-plugin-file-opener2": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-filechooser": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-device": {},
@@ -92,7 +97,9 @@
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyCLqxUwxHnw8RT5_E4Ij4khctOUbooaJQA",
@@ -105,7 +112,7 @@
     },
     "platforms": [
       "browser",
-      "android"
+      "ios"
     ]
   }
 }
